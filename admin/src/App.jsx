@@ -1,9 +1,15 @@
-import Login from "./pages/Login";
+import { BrowserRouter } from "react-router-dom";
+
+import AnimatedRoutes from "./components/AnimatedRoutes";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <div className="App">
-      <Login />
+      <BrowserRouter>
+        <ScrollToTop />
+        <AnimatedRoutes />
+      </BrowserRouter>
     </div>
   );
 }
