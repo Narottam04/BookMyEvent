@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import GoogleLoginBtn from "../components/lvl0components/GoogleLoginBtn";
 
-const duration = 0.5;
+const duration = 0.3;
 const easing = [0.16, 1, 0.3, 1];
 
 const pageVariants = {
@@ -30,7 +30,6 @@ const pageVariants = {
 };
 
 const Login = () => {
-  const location = useLocation();
   return (
     <motion.div
       key={location.pathname}
@@ -90,11 +89,11 @@ const Login = () => {
             <div className="">
               <img src="https://floatui.com/logo.svg" width={150} className="lg:hidden" />
               <div className="mt-5 space-y-2">
-                <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">Log In</h3>
+                <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">Sign up</h3>
                 <p className="">
-                  Don't have an account?{" "}
-                  <Link to="/signup" className="font-medium text-indigo-600 hover:text-indigo-500">
-                    Sign Up
+                  Already have an account?{" "}
+                  <Link to="/" className="font-medium text-indigo-600 hover:text-indigo-500">
+                    Log in
                   </Link>
                 </p>
               </div>
@@ -108,6 +107,14 @@ const Login = () => {
               </p>
             </div>
             <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
+              <div>
+                <label className="font-medium">Name</label>
+                <input
+                  type="text"
+                  required
+                  className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+                />
+              </div>
               <div>
                 <label className="font-medium">Email</label>
                 <input
