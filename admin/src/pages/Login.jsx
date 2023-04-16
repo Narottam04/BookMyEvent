@@ -1,7 +1,12 @@
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Formik, Form, ErrorMessage, Field } from "formik";
+import * as Yup from "yup";
 
 import GoogleLoginBtn from "../components/lvl0components/GoogleLoginBtn";
+import ErrorToast from "../components/lvl0components/ErrorToast";
+import { useAuth } from "../context/AuthContext";
 
 const duration = 0.5;
 const easing = [0.16, 1, 0.3, 1];
@@ -29,8 +34,49 @@ const pageVariants = {
   }
 };
 
+const initialValues = {
+  email: "",
+  password: ""
+};
+
+const validationSchema = Yup.object().shape({
+  email: Yup.string().email("Invalid Email Address").required("Required"),
+
+  password: Yup.string()
+    .min(6, "Password must be 6 charcters at minimum")
+    .max(30, "Password is too big!")
+    .required("Required")
+});
+
 const Login = () => {
+  const { login, currentUser } = useAuth();
+  const toastRef = useRef(null);
+  const [errorMessage, setErrorMessage] = useState(null);
+
   const location = useLocation();
+  const navigate = useNavigate();
+
+  async function onSubmit(values, onSubmitProps) {
+    const { email, password } = values;
+    console.log("login started!", email, password);
+    try {
+      await login(email, password);
+      console.log("logged in successfully");
+      navigate("/app");
+    } catch (error) {
+      console.log("some error!!!");
+      setErrorMessage(error.message);
+      toastRef.current.show();
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    if (currentUser) {
+      navigate("/app");
+    }
+  }, [currentUser]);
+
   return (
     <motion.div
       key={location.pathname}
@@ -39,6 +85,7 @@ const Login = () => {
       exit="out"
       variants={pageVariants}
     >
+      <ErrorToast message={errorMessage} ref={toastRef} />
       <main className="w-full flex">
         <div className="relative flex-1 hidden items-center justify-center h-screen bg-gray-900 lg:flex">
           <div className="relative z-10 w-full max-w-md">
@@ -107,27 +154,66 @@ const Login = () => {
                 Or continue with
               </p>
             </div>
-            <form onSubmit={(e) => e.preventDefault()} className="space-y-5">
-              <div>
-                <label className="font-medium">Email</label>
-                <input
-                  type="email"
-                  required
-                  className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
-                />
-              </div>
-              <div>
-                <label className="font-medium">Password</label>
-                <input
-                  type="password"
-                  required
-                  className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
-                />
-              </div>
-              <button className="w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150">
-                Create account
-              </button>
-            </form>
+            <Formik
+              initialValues={initialValues}
+              onSubmit={onSubmit}
+              validationSchema={validationSchema}
+              validateOnMount
+            >
+              {(formik) => {
+                return (
+                  <Form autoComplete="off" className="space-y-5">
+                    <div>
+                      <label className="font-medium">Email</label>
+                      <Field
+                        id="email"
+                        name="email"
+                        type="email"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.email}
+                        required
+                        className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+                      />
+                      <ErrorMessage name="email">
+                        {(errorMsg) => <p className="text-sm text-red-600">{errorMsg}</p>}
+                      </ErrorMessage>
+                    </div>
+                    <div>
+                      <label className="font-medium">Password</label>
+                      <Field
+                        id="password"
+                        name="password"
+                        type="password"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.password}
+                        required
+                        className="w-full mt-2 px-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
+                      />
+                      <ErrorMessage name="password">
+                        {(errorMsg) => {
+                          setErrorMessage(errorMsg);
+                          toastRef.current.show();
+                          return <p className="text-sm text-red-600">{errorMsg}</p>;
+                        }}
+                      </ErrorMessage>
+                    </div>
+                    <button
+                      type="submit"
+                      disabled={!formik.isValid || formik.isSubmitting}
+                      aria-label="create my account"
+                      className={`${
+                        (!formik.isValid || formik.isSubmitting) &&
+                        "bg-gray-600 hover:bg-gray-500 active:bg-gray-600"
+                      } w-full px-4 py-2 text-white font-medium bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-600 rounded-lg duration-150`}
+                    >
+                      Log In
+                    </button>
+                  </Form>
+                );
+              }}
+            </Formik>
           </div>
         </div>
       </main>
