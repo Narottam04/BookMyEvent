@@ -18,8 +18,8 @@ import React from 'react'
         <div className="grid gap-8 lg:grid-cols-3 sm:max-w-sm sm:mx-auto lg:max-w-full">
           <div className="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-sm">
         <div class="relative">
-          {<img  src="https://images.pexels.com/photos/2408666/pexels-photo-2408666.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;w=500" alt="Image description" class="w-full" />}
-          <div class="absolute bottom-0 left-0 right-0 text-white p-4">
+          {<img  src="/1.png" class="w-full rounded-xl" />}
+          {/* <div class="absolute bottom-0 left-0 right-0 text-white p-4">
           <h2 class="text-2xl font-bold">  Virtual Events</h2>
           <p class="mt-2">  Transforming virtual events into unforgettable experiences</p>
           <a
@@ -29,16 +29,16 @@ import React from 'react'
               >
                 Learn more
           </a>
-          </div>
+          </div> */}
           </div>
           </div>
           <div className="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-sm">
 
           <div class="relative">
-          {<img  src="https://images.pexels.com/photos/2408666/pexels-photo-2408666.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+          {<img  src="/2.png"
            alt="Image description"
-          class="w-full" />}
-          <div class="absolute bottom-0 left-0 right-0 text-white p-4">
+          class="w-full rounded-xl" />}
+          {/* <div class="absolute bottom-0 left-0 right-0 text-white p-4">
           <h2 class="text-2xl font-bold">Hybrid events</h2>
           <p class="mt-2">Combining the best of both worlds</p>
           <a
@@ -48,16 +48,16 @@ import React from 'react'
               >
                 Learn more
           </a>
-          </div>
+          </div> */}
           </div>
   
           </div>
           <div className="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-sm">
           <div class="relative">
-          {<img  src="https://images.pexels.com/photos/2408666/pexels-photo-2408666.jpeg?auto=compress&amp;cs=tinysrgb&amp;dpr=2&amp;h=750&amp;w=1260"
+          {<img  src="/3.png"
            alt="Image description"
-          class="w-full" />}
-          <div class="absolute bottom-0 left-0 right-0 text-white p-4">
+          class="w-full rounded-xl" />}
+          {/* <div class="absolute bottom-0 left-0 right-0 text-white p-4">
           <h2 class="text-2xl font-bold"> In - Person Events</h2>
           <p class="mt-2">Experience the power of in-person events</p>
           <a
@@ -67,7 +67,7 @@ import React from 'react'
               >
                 Learn more
           </a>
-          </div>
+          </div> */}
           </div>
           
           </div>
