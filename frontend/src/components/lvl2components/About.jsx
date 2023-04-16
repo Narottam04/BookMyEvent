@@ -6,7 +6,7 @@ const About = () => {
         <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
           <div>
             <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-accent-400">
-              Brand new
+            TechVenture
             </p>
           </div>
           <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
@@ -33,13 +33,12 @@ const About = () => {
                   height="24"
                 />
               </svg>
-              <span className="relative">The</span>
+              <span className="relative">Transform</span>
             </span>{' '}
-            quick, brown fox jumps over a lazy dog
+             your events into experiences with our innovative Event Management App
           </h2>
           <p className="text-base text-gray-700 md:text-lg">
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-            accusantium doloremque rem aperiam, eaque ipsa quae.
+          We’ve got your back—in more ways than one
           </p>
         </div>
         <div className="grid max-w-screen-lg gap-8 lg:grid-cols-2 sm:mx-auto">
@@ -63,31 +62,27 @@ const About = () => {
           <div className="flex flex-col justify-center">
             <div className="pb-4 mb-4 border-b">
               <h6 className="mb-2 font-semibold leading-5">
-                Sit error voluptatem accusantium
+                All the events at one place
               </h6>
               <p className="text-sm text-gray-900">
-                Sportacus andrew weatherall goose Refined gentlemen super mario
-                des lynam alpha trion zap rowsdower, omar sharif old.
+              All the events you need, in one place - our platform simplifies the process of organizing and managing your events, so you can focus on creating unforgettable experiences.
               </p>
             </div>
             <div className="pb-4 mb-4 border-b">
               <h6 className="mb-2 font-semibold leading-5">
-                Cheese on toast airedale the big cheese
+              Simplify the planning process
               </h6>
               <p className="text-sm text-gray-900">
-                Chase ball of string eat plants, meow, and throw up because I ate
-                plants going to catch the red dot today going to catch the red dot
-                today. I could pee on this if I had the energy.
+              Our platform offers a range of features to make the event planning process more efficient and effective, including event status, registration, submission management etc
               </p>
             </div>
             <div>
               <h6 className="mb-2 font-semibold leading-5">
-                A flower in my garden, a mystery
+              Helps to reach target audience and maximize attendance
               </h6>
               <p className="text-sm text-gray-900">
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                quae doloremque laudantium.
+              We ensuring that event is a success.
+              Let us help you take your tech event to the next level.
               </p>
             </div>
           </div>
