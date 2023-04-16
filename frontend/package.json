@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.7",
     "@reduxjs/toolkit": "^1.9.3",
     "firebase": "^9.19.1",
     "framer-motion": "^10.12.2",
