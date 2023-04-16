@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default () => {
   const tabItems = ["Offline", "Virtual", "Hybrid"];
@@ -33,13 +34,13 @@ export default () => {
       </ul>
       <div className="max-w-screen-xl mx-auto border-b flex items-center justify-center gap-x-3 overflow-x-auto text-sm mt-12 flex-wrap gap-y-12">
         <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow ">
-          <a href="#">
+          <Link to="/app/event/1">
             <img
               class="rounded-t-lg"
               src="https://source.unsplash.com/WLUHO9A_xik/1600x900"
               alt=""
             />
-          </a>
+          </Link>
           <div class="p-5">
             <a href="#">
               <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 ">
