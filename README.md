@@ -9,6 +9,7 @@ Test-driven development is a software development process that relies on creatin
 Atomic design is a user interface design strategy that breaks down the interface into basic, reusable components called atoms. It enables developers to build progressively complex components by combining these atoms into molecules, organisms, templates, and finished pages. The approach helps in developing a consistent, modular design system that is easy to scale and reuse.
 
 **Components of the App**
+
 Front Page
 Navbar
 Home
