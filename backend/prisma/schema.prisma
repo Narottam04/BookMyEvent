@@ -1,0 +1,89 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
+}
+
+model User {
+  id        String        @id @unique
+  name      String
+  email     String        @unique
+  bio       String?       @db.Text
+  isAdmin   Boolean       @default(false)
+  // one user can create many events
+  organizer Event[]
+  // one user can participate in many events
+  events    Participant[]
+}
+
+enum EventType {
+  Hybrid
+  Virtual
+  Offline
+}
+
+model Event {
+  id          String    @unique @default(uuid())
+  title       String
+  description String
+  poster      String
+  StartDate   DateTime
+  EndDate     DateTime
+  Seats       Int
+  type        EventType
+  location    String
+  createdById Int
+  isApproved  Boolean   @default(false)
+
+  User   User   @relation(fields: [userId], references: [id])
+  userId String
+
+  // one event can have many participants
+  participants Participant[]
+  // one event can have many speackers
+  Speakers     Speaker[]
+  // one event can have many faqs
+  faqs         Faq[]
+
+  @@index([userId])
+}
+
+// Junction table for the many-to-many relationship as Participants
+model Participant {
+  id    String @id @default(cuid())
+  event Event  @relation(fields: [eventId], references: [id])
+  user  User   @relation(fields: [userId], references: [id])
+
+  eventId String
+  userId  String
+
+  @@index([eventId, userId])
+}
+
+model Speaker {
+  id    String @unique @default(uuid())
+  name  String
+  bio   String
+  photo String
+
+  event   Event  @relation(fields: [eventId], references: [id])
+  eventId String
+
+  @@index([eventId])
+}
+
+model Faq {
+  id       String @unique @default(uuid())
+  question String @db.Text
+  answer   String @db.Text
+
+  event   Event  @relation(fields: [eventId], references: [id])
+  eventId String
+}

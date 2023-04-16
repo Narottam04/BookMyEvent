@@ -7,6 +7,7 @@ import * as Yup from "yup";
 import GoogleLoginBtn from "../components/lvl0components/GoogleLoginBtn";
 import ErrorToast from "../components/lvl0components/ErrorToast";
 import { useAuth } from "../context/AuthContext";
+import { getAdditionalUserInfo } from "firebase/auth";
 
 const duration = 0.3;
 const easing = [0.16, 1, 0.3, 1];
@@ -73,8 +74,28 @@ const Signup = () => {
       await updateProfileName(username);
 
       const { isNewUser } = getAdditionalUserInfo(response);
+      console.log(isNewUser, "new user1");
+
       if (isNewUser) {
+        console.log(isNewUser, "new user2");
         // TODO: add new user to mysql database
+        const addUser = await fetch("/api/user", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            id: response.user.uid,
+            name: username,
+            email
+          })
+        });
+
+        const addUserRes = await addUser.json();
+        console.log("added new user!!", addUserRes);
+        if (!addUser.ok) {
+          throw new Error(addUser);
+        }
       }
 
       if (response.user) {
