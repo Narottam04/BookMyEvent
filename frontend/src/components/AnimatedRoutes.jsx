@@ -7,6 +7,7 @@ import Dashboard from "../pages/Dashboard";
 // import SidebarLayout from "./lvl2components/SidebarLayout";
 import MainPage from "../pages/MainPage";
 import ProtectedRoute from "./ProtectedRoute";
+import EventDetails from "../pages/EventDetails";
 
 const AnimatedRoutes = () => {
   return (
@@ -20,6 +21,14 @@ const AnimatedRoutes = () => {
           element={
             <ProtectedRoute>
               <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/app/event/:id"
+          element={
+            <ProtectedRoute>
+              <EventDetails />
             </ProtectedRoute>
           }
         />
