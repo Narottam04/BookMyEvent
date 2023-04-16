@@ -89,7 +89,7 @@ const Login = () => {
       <main className="w-full flex">
         <div className="relative flex-1 hidden items-center justify-center h-screen bg-gray-900 lg:flex">
           <div className="relative z-10 w-full max-w-md">
-            <img src="https://floatui.com/logo-dark.svg" width={150} />
+            <img src="/logo.png" width={200}/>
             <div className=" mt-4 space-y-5">
               <h3 className="text-white text-3xl font-bold">
                 TechConnect: The Ultimate Event App for Tech Enthusiasts
