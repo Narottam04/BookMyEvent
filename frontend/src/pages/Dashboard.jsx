@@ -8,7 +8,6 @@ const Dashboard = () => {
   return (
     <>
       <DashNav />
-      <Logout />
       <DashSearch />
       <TabsRender />
     </>

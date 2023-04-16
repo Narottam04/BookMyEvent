@@ -1,157 +1,163 @@
-import React from "react";
-// import UserDropdown from './UserDropDown'
+import { useState, useRef, useEffect } from "react";
+import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router";
 
-const DashNav = () => {
+// Profile Dropdown
+const ProfileDropDown = (props) => {
+  const [state, setState] = useState(false);
+  const profileRef = useRef();
+
+  const { logout } = useAuth();
+  let navigate = useNavigate();
+
+  async function logoutHandler() {
+    try {
+      await logout();
+      console.log("logged out user successfully");
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const navigation = [
+    { title: "Dashboard", path: "javascript:void(0)" },
+    { title: "Settings", path: "javascript:void(0)" }
+  ];
+
+  useEffect(() => {
+    const handleDropDown = (e) => {
+      if (!profileRef.current.contains(e.target)) setState(false);
+    };
+    document.addEventListener("click", handleDropDown);
+  }, []);
+
   return (
-    <>
-      <nav class="bg-white border-gray-200 dark:bg-gray-900">
-        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-          <a href="https://flowbite.com/" class="flex items-center">
-            <img
-              src="https://flowbite.com/docs/images/logo.svg"
-              class="h-8 mr-3"
-              alt="Flowbite Logo"
-            />
-            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-              Flowbite
-            </span>
-          </a>
-          <div class="flex items-center md:order-2">
-            <button
-              type="button"
-              class="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-              id="user-menu-button"
-              aria-expanded="false"
-              data-dropdown-toggle="user-dropdown"
-              data-dropdown-placement="bottom"
-            >
-              <span class="sr-only">Open user menu</span>
-              <img
-                class="w-8 h-8 rounded-full"
-                src="/docs/images/people/profile-picture-3.jpg"
-                alt="user photo"
-              />
-            </button>
-            <div
-              class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
-              id="user-dropdown"
-            >
-              <div class="px-4 py-3">
-                <span class="block text-sm text-gray-900 dark:text-white">Bonnie Green</span>
-                <span class="block text-sm  text-gray-500 truncate dark:text-gray-400">
-                  name@flowbite.com
-                </span>
-              </div>
-              <ul class="py-2" aria-labelledby="user-menu-button">
-                <li>
-                  <a
-                    href="#"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                  >
-                    Dashboard
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                  >
-                    Settings
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                  >
-                    Earnings
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="#"
-                    class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-                  >
-                    Sign out
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <button
-              data-collapse-toggle="mobile-menu-2"
-              type="button"
-              class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-              aria-controls="mobile-menu-2"
-              aria-expanded="false"
-            >
-              <span class="sr-only">Open main menu</span>
-              <svg
-                class="w-6 h-6"
-                aria-hidden="true"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-            </button>
-          </div>
-          <div
-            class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
-            id="mobile-menu-2"
-          >
-            <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-              <li>
-                <a
-                  href="#"
-                  class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
-                  aria-current="page"
-                >
-                  Home
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  About
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  Services
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  Pricing
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                >
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </div>
+    <div className={`relative ${props.class} z-[1000]`}>
+      <div className="flex items-center space-x-4">
+        <button
+          ref={profileRef}
+          className="w-10 h-10 outline-none rounded-full ring-offset-2 ring-gray-200 ring-2 lg:focus:ring-indigo-600"
+          onClick={() => setState(!state)}
+        >
+          <img
+            src="https://randomuser.me/api/portraits/men/46.jpg"
+            className="w-full h-full rounded-full"
+          />
+        </button>
+        <div className="lg:hidden">
+          <span className="block">Micheal John</span>
+          <span className="block text-sm text-gray-500">john@gmail.com</span>
         </div>
-      </nav>
-    </>
+      </div>
+      <ul
+        className={`bg-white top-12 right-0 mt-5 space-y-5 lg:absolute lg:border lg:rounded-md lg:text-sm lg:w-52 lg:shadow-md lg:space-y-0 lg:mt-0 ${
+          state ? "" : "lg:hidden"
+        }`}
+      >
+        {navigation.map((item, idx) => (
+          <li>
+            <a
+              key={idx}
+              className="block text-gray-600 lg:hover:bg-gray-50 lg:p-2.5"
+              href={item.path}
+            >
+              {item.title}
+            </a>
+          </li>
+        ))}
+        <li>
+          <div className="block text-gray-600 lg:hover:bg-gray-50 lg:p-2.5">
+            <button className="" onClick={() => logoutHandler()}>
+              Log out
+            </button>
+          </div>
+        </li>
+      </ul>
+    </div>
   );
 };
 
+const DashNav = () => {
+  const [menuState, setMenuState] = useState(false);
+
+  // Replace javascript:void(0) path with your path
+  const navigation = [
+    { title: "Customers", path: "javascript:void(0)" },
+    { title: "Careers", path: "javascript:void(0)" },
+    { title: "Guides", path: "javascript:void(0)" },
+    { title: "Partners", path: "javascript:void(0)" }
+  ];
+  return (
+    <nav className="bg-white border-b ">
+      <div className="flex items-center space-x-8 py-3 px-4 max-w-screen-xl mx-auto md:px-8">
+        <div className="flex-none lg:flex-initial">
+          <a href="javascript:void(0)">
+            <img
+              src="https://www.floatui.com/logo.svg"
+              width={120}
+              height={50}
+              alt="Float UI logo"
+            />
+          </a>
+        </div>
+        <div className="flex-1 flex items-center justify-between">
+          <div
+            className={`bg-white absolute z-20 w-full top-16 left-0 p-4 border-b lg:static lg:block lg:border-none ${
+              menuState ? "" : "hidden"
+            }`}
+          >
+            <ul className="mt-12 space-y-5 lg:flex lg:space-x-6 lg:space-y-0 lg:mt-0">
+              {navigation.map((item, idx) => (
+                <li key={idx} className="text-gray-600 hover:text-gray-900">
+                  <a href={item.path}>{item.title}</a>
+                </li>
+              ))}
+            </ul>
+            <ProfileDropDown class="mt-5 pt-5 border-t lg:hidden" />
+          </div>
+          <div className="flex-1 flex items-center justify-end space-x-2 sm:space-x-6">
+            <ProfileDropDown class="hidden lg:block" />
+            <button
+              className="outline-none text-gray-400 block lg:hidden"
+              onClick={() => setMenuState(!menuState)}
+            >
+              {menuState ? (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16m-7 6h7"
+                  />
+                </svg>
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+};
 export default DashNav;
