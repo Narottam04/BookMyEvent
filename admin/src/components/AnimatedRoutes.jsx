@@ -1,6 +1,9 @@
 import { Suspense, lazy } from "react";
 import { AnimatePresence } from "framer-motion";
 import { Route, Routes, useLocation } from "react-router-dom";
+
+import ProtectedRoute from "./ProtectedRoute";
+
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Dashboard from "../pages/Dashboard";
@@ -12,7 +15,13 @@ const AnimatedRoutes = () => {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route element={<SidebarLayout />}>
+        <Route
+          element={
+            <ProtectedRoute>
+              <SidebarLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route path="/app" element={<Dashboard />} />
         </Route>
       </Routes>
