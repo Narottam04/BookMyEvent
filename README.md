@@ -39,7 +39,7 @@ Atomic design is a user interface design strategy that breaks down the interface
 
 # ER Diagram
 
-![WhatsApp Image 2023-04-16 at 14 06 14](https://user-images.githubusercontent.com/93897192/232375905-5aa6c94a-f4db-490d-b00a-5f7c6545bb8a.jpg)
+![ER diagram EventVenture](https://user-images.githubusercontent.com/93897192/232381065-ecbeee0e-6856-4ad8-a081-c2fe22363a39.jpg)
 
 **Entities**
 
