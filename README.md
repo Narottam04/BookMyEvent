@@ -2,6 +2,16 @@
 
 **EventVenture** is a platform in which user browse and take part in a variety of events that are posted on the site.
 
+# Tech Stack
+ - React Js
+ - Tailwind CSS
+ - Redux Toolkit
+ - Node Js
+ - Typescript
+ - Prisma
+ - My SQL - PlanetScale(Vitess)
+ - Firebase - Authentication
+
 # Test-driven development (TDD)
 
 Test-driven development is a software development process that relies on creating test cases before fully developing the software. By doing so, it helps to ensure that the software meets the requirements and is tested against all test cases during development.
