@@ -4,6 +4,21 @@
 
 TDD Document Link: https://www.notion.so/EventVenture-12a8ed8f58a74376bea92b8548437592?pvs=4
 
+# Home Page
+
+![Landing page](https://user-images.githubusercontent.com/93897192/232384592-59f9bfaa-244c-4112-b0e1-afaa6a4ae3ba.png)
+
+![Home page](https://user-images.githubusercontent.com/93897192/232384773-caccb4d0-e532-460b-aa7b-beac257de27f.png)
+
+# Login Page
+
+![Login page](https://user-images.githubusercontent.com/93897192/232385171-acc34da7-8337-43a9-b4f3-32ceb58c0c5b.png)
+
+# Dashboard 
+
+![Dashboard](https://user-images.githubusercontent.com/93897192/232384208-45a9f8e9-6303-4a5e-a29b-a6cb75daf040.png)
+
+
 # Tech Stack
  - React Js
  - Tailwind CSS
