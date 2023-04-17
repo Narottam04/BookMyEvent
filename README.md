@@ -37,6 +37,22 @@ Atomic design is a user interface design strategy that breaks down the interface
 - Footer
 - Organize Hackathon (shown when the user is signed up)
 
+# ER Diagram
+
+![WhatsApp Image 2023-04-16 at 14 06 14](https://user-images.githubusercontent.com/93897192/232375905-5aa6c94a-f4db-490d-b00a-5f7c6545bb8a.jpg)
+
+**Entities**
+
+- USER
+- EVENT
+- Participant
+- FAQ
+- Speaker
+
+The entities are User, Event, Participant, FAQ and Speaker.
+
+User has a one to many relation. It means the user can organize an event or participate in an event.  An event section indicates the events that are lined up or created for the users to look at on the website. This event section has a relation with all the entities, i.e, Speaker, Participant, User and FAQ. The participant can participate in a single event or multiple events, making it a one to many relation..Similarly, a speaker can speak in a single event or multiple events. An event can have multiple FAQs.
+
 ### **Dashboard**
 
 - Search bar
@@ -65,3 +81,4 @@ Atomic design is a user interface design strategy that breaks down the interface
  - Push notification
  
 The design system is built using the atomic design approach, ensuring a modular and scalable system. The app features a front page with a navbar, home, about us, events, sign in, sign up, and contact form. The dashboard includes a search bar, ongoing, upcoming, and past events, event details, admin panel, participants, speakers, FAQ, description, images, event reviews, all signed up users, and an option to change an existing user to admin. Future plans include integration with Open AI API, an Android app, and push notifications.
+
