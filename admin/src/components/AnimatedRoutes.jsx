@@ -8,6 +8,7 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Dashboard from "../pages/Dashboard";
 import SidebarLayout from "./lvl2components/SidebarLayout";
+import Events from "../pages/Events";
 
 const AnimatedRoutes = () => {
   return (
@@ -23,6 +24,7 @@ const AnimatedRoutes = () => {
           }
         >
           <Route path="/app" element={<Dashboard />} />
+          <Route path="/app/events" element={<Events />} />
         </Route>
       </Routes>
     </AnimatePresence>

@@ -89,7 +89,7 @@ const Login = () => {
       <main className="w-full flex">
         <div className="relative flex-1 hidden items-center justify-center h-screen bg-gray-900 lg:flex">
           <div className="relative z-10 w-full max-w-md">
-            <img src="/logo.png" width={200}/>
+            <img src="/logo.png" width={200} />
             <div className=" mt-4 space-y-5">
               <h3 className="text-white text-3xl font-bold">
                 TechConnect: The Ultimate Event App for Tech Enthusiasts
@@ -135,7 +135,8 @@ const Login = () => {
         <div className="flex-1 flex items-center justify-center h-screen">
           <div className="w-full max-w-md space-y-8 px-4 bg-white text-gray-600 sm:px-0">
             <div className="">
-              <img src="https://floatui.com/logo.svg" width={150} className="lg:hidden" />
+              <img src="/logo.png" width={200} className="lg:hidden" />
+
               <div className="mt-5 space-y-2">
                 <h3 className="text-gray-800 text-2xl font-bold sm:text-3xl">Log In</h3>
                 <p className="">

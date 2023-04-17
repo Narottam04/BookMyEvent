@@ -18,9 +18,9 @@ const SidebarLayout = () => {
   }, [location]);
 
   return (
-    <div className="bg-black ">
+    <div className=" ">
       {/* desktop dasboard */}
-      <div className="flex flex-row min-h-screen bg-black text-gray-800 md:overflow-x-hidden">
+      <div className="flex flex-row min-h-screen  text-gray-800 md:overflow-x-hidden">
         <Sidebar active={currentLocation?.slice(5) === "" ? `home` : currentLocation?.slice(5)} />
         {/* page transitions */}
         <motion.div
@@ -28,7 +28,7 @@ const SidebarLayout = () => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0, x: "-100%" }}
           transition={{ duration: 0.2, ease: "easeOut" }}
-          className="main flex flex-col flex-grow -ml-64 lg:ml-0 transition-all duration-150 ease-in pl-64 bg-black"
+          className="main flex flex-col flex-grow -ml-64 lg:ml-0 transition-all duration-150 ease-in pl-64 "
         >
           <Suspense fallback={<Loader />}>
             <Outlet />

@@ -26,6 +26,14 @@ export const addEvent = asyncHandler(async (req: Request, res: Response) => {
   res.json(event);
 });
 
+// @desc get all events
+// @route POST /api/event
+// @access PRIVATE
+export const getEvent = asyncHandler(async (req: Request, res: Response) => {
+  const allEvents = await db.event.findMany();
+  res.json(allEvents);
+});
+
 // @desc POST add speakers to event
 // @route POST /api/event/speakers
 // @access PRIVATE
@@ -42,6 +50,40 @@ export const addSpeakers = asyncHandler(async (req: Request, res: Response) => {
 // @desc POST add speakers to event
 // @route POST /api/event/speakers
 // @access PRIVATE
+export const addParticipants = asyncHandler(async (req: Request, res: Response) => {
+  const { eventId, userId } = req.body;
+
+  const participant = await db.participant.create({
+    data: {
+      eventId,
+      userId
+    }
+  });
+
+  res.json(participant);
+});
+
+// @desc POST add speakers to event
+// @route POST /api/event/speakers
+// @access PRIVATE
+export const getParticipant = asyncHandler(async (req: Request, res: Response) => {
+  const { eventId, userId } = req.body;
+
+  const participant = await db.participant.findMany({
+    include: {
+      user: true
+    },
+    where: {
+      eventId
+    }
+  });
+
+  res.json(participant);
+});
+
+// @desc POST add speakers to event
+// @route POST /api/event/speakers
+// @access PRIVATE
 export const addFaq = asyncHandler(async (req: Request, res: Response) => {
   const { data } = req.body;
 
@@ -50,11 +92,4 @@ export const addFaq = asyncHandler(async (req: Request, res: Response) => {
   });
 
   res.json(faq);
-});
-
-// @desc get all events
-// @route POST /api/event
-// @access PRIVATE
-export const getEvent = asyncHandler(async (req: Request, res: Response) => {
-  res.json(event);
 });

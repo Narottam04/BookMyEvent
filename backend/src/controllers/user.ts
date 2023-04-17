@@ -20,8 +20,18 @@ export const user = asyncHandler(async (req: Request, res: Response) => {
   res.json(user);
 });
 
-// @desc post event details
+// @desc POST user details
+// @route POST /api/user
+// @access PRIVATE
+export const getAllUsers = asyncHandler(async (req: Request, res: Response) => {
+  const { id, name, email } = req.body;
 
+  const user = await db.user.findMany();
+
+  res.json(user);
+});
+
+// @desc post event details
 // @desc post event
 
 // @desc fetch all users - admin
